@@ -52,7 +52,7 @@ export default function RegistrationForm({ navigation }: Props) {
         JSON.stringify({ email, password, userName })
       );
       Alert.alert("Success", "User registered successfully");
-      navigation.navigate("Login");
+      navigation.navigate("SignIn");
     } catch (error) {
       Alert.alert("Error", "Failed to save user credentials");
     }

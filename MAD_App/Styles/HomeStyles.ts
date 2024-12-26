@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 16,
     color: "#007bff", // Blue text for headings
+    paddingLeft: 16,
   },
   exerciseCountContainer: {
     position: "absolute",
