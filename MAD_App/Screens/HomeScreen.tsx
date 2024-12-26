@@ -4,6 +4,7 @@ import { StackScreenProps } from "@react-navigation/stack";
 import { RootStackParamList } from "../App";
 import CountryCard from "../Components/CountryCard";
 import styles from "../Styles/HomeStyles";
+import { useCount } from "../contextAPI/CountProvider";
 
 type Props = StackScreenProps<RootStackParamList, "Home">;
 
@@ -19,9 +20,13 @@ interface Country {
 
 export default function HomeScreen({ navigation, route }: Props) {
   const username = route.params?.username || "Guest";
-  const [countryCount, setCountryCount] = useState(0);
+  const {
+    countryCount,
+    setCountryCount,
+    selectedCountries,
+    setSelectedCountries,
+  } = useCount();
   const [countries, setCountries] = useState<Country[]>([]);
-  const [selectedCountries, setSelectedCountries] = useState<Country[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -130,7 +135,7 @@ export default function HomeScreen({ navigation, route }: Props) {
   return (
     <View style={styles.container}>
       <Text style={styles.username}>Welcome, {username}!</Text>
-      <Text style={styles.heading1}>Covid 19 Spread in Worldwide</Text>
+      <Text style={styles.heading1}>Current Covid 19 Spread in Worldwide</Text>
       <FlatList
         data={countries}
         keyExtractor={(item) => item.id}
@@ -151,7 +156,7 @@ export default function HomeScreen({ navigation, route }: Props) {
         )}
         numColumns={2} // Display 2 cards per row
       />
-     <View style={styles.exerciseCountContainer}>
+      <View style={styles.exerciseCountContainer}>
         <Text style={styles.exerciseCountText}>
           Countries Added: {countryCount}
         </Text>
